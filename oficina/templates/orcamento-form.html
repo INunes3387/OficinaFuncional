@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.cliente |as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.carro |as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.mecanico |as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.valor |as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.descricao |as_crispy_field }}
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        {% if orcamento %}
+        <a href="{% url 'delete_orcamento' orcamento.id %}" class="btn btn-danger">Excluir</a>
+        {% endif %}
+        <a class="btn btn-light" href="{% url 'list_orcamento' %}">Cancelar</a>
+    </form>
+{% endblock %}
